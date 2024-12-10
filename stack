@@ -1,0 +1,22 @@
+# Membuat kelas Stack
+class Stack:
+    items = []
+    push = lambda self, item: self.items.append(item)
+    pop = lambda self: self.items.pop() if self.items else None
+    kosong = lambda self: len(self.items) == 0
+
+stack_undo = Stack()
+stack_redo = Stack()
+
+stack_undo.push("Buka file.txt")
+if stack_undo.kosong():
+    print("Tidak ada aksi sebelumnya untuk dibatalkan.")
+else:
+    aksi_undo = stack_undo.pop()
+    print(f"Aksi dibatalkan: {aksi_undo}")
+    stack_redo.push(aksi_undo)
+if stack_redo.kosong():
+    print("Tidak ada aksi untuk diulang.")
+else:
+    aksi_redo = stack_redo.pop()
+    print(f"Aksi diulang: {aksi_redo}")
